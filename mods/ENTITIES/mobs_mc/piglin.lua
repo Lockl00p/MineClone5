@@ -126,7 +126,7 @@ local pigman = {
 }
 
 
-end
+
 mobs:register_mob("mobs_mc:piglin", pigman)
 
 -- Baby pigman.

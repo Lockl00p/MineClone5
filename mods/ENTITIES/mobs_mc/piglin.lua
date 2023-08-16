@@ -117,7 +117,7 @@ local pigman = {
 		end
 						if atk == true then
 							prvhth = self.object:get_hp()
-							self.object.punch(plr)
+							self.object:punch(plr)
 							self.object:set_hp(prvhth)
 						end
 		end

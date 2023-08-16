@@ -86,6 +86,7 @@ dofile(path .. "/skeleton+stray.lua") -- Mesh by Morn76 Animation by Pavel_S
 dofile(path .. "/skeleton_wither.lua") -- Mesh by Morn76 Animation by Pavel_S
 dofile(path .. "/zombie.lua") -- Mesh by Morn76 Animation by Pavel_S
 dofile(path .. "/zombiepig.lua") -- Mesh by Morn76 Animation by Pavel_S
+dofile(path .. "/piglin.lua") -- Mesh by Morn76 Animation by Pavel_S
 dofile(path .. "/slime+magma_cube.lua") -- Wuzzy
 dofile(path .. "/spider.lua") -- Spider by AspireMint (fishyWET (CC-BY-SA 3.0 license for texture)
 dofile(path .. "/vex.lua") -- KrupnoPavel

@@ -4,14 +4,15 @@
 --License for code WTFPL and otherwise stated in readmes
 
 local S = minetest.get_translator(minetest.get_current_modname())
-
+local ange = false
+local likedarmor = {"mcl_armor:golden_helmet","mcl_armor:golden_chestplate","mcl_armor:golden_leggings","mcl_armor:golden_boots"}
 --###################
---################### ZOMBIE PIGMAN
+--################### PIGLIN
 --###################
-
-
+local vector = vector
+local prvhth = 20
 local pigman = {
-	description = S("Zombie Piglin"),
+	description = S("Piglin"),
 	-- type="animal", passive=false: This combination is needed for a neutral mob which becomes hostile, if attacked
 	type = "animal",
 	passive = false,
@@ -25,7 +26,7 @@ local pigman = {
 	xp_max = 6,
 	armor = {undead = 90, fleshy = 90},
 	attack_type = "punch",
-	group_attack = { "mobs_mc:zombie_piglin", "mobs_mc:baby_zombiepiglin" },
+	group_attack = {"mobs_mc:piglin", "mobs_mc:baby_piglin"},
 	damage = 9,
 	reach = 2,
 	collisionbox = {-0.3, -0.01, -0.3, 0.3, 1.94, 0.3},
@@ -66,11 +67,6 @@ local pigman = {
 	run_velocity = 2.6,
 	pathfinding = 1,
 	drops = {
-		{name = mobs_mc.items.rotten_flesh,
-		chance = 1,
-		min = 1,
-		max = 1,
-		looting = "common"},
 		{name = mobs_mc.items.gold_nugget,
 		chance = 1,
 		min = 0,
@@ -104,17 +100,42 @@ local pigman = {
 	fire_damage = 0,
 	fear_height = 4,
 	view_range = 16,
-	harmed_by_heal = true,
-	fire_damage_resistant = true,
+	harmed_by_heal = false,
+	fire_damage_resistant = false,
+	do_custom = function(self, dtime)
+		for _, plr in pairs(minetest.get_connected_players()) do
+			atk = true
+			if plr:get_pos() and vector.distance(self.object:get_pos(), plr:getpos() < 17) and plr:get_armor_groups() then
+				for a=1,4 do
+					for _, arm in pairs(likedarmor) do 
+						if plr:get_inventory():get_stack("armor", a+1):get_name() == arm then
+							atk = false
+							
+						end
+					end
+				end
+		end
+						if atk == true then
+							prvhth = self.object:get_hp()
+							self.object.punch(plr)
+							self.object:set_hp(prvhth)
+						end
+		end
+	end,
+	
 }
 
-mobs:register_mob("mobs_mc:zombie_piglin", pigman)
+
+end
+mobs:register_mob("mobs_mc:piglin", pigman)
 
 -- Baby pigman.
 -- A smaller and more dangerous variant of the pigman
 
 local baby_pigman = table.copy(pigman)
-baby_pigman.description = S("Baby Zombie Piglin")
+baby_pigman.neutral = false
+baby_pigman.passive = true
+baby_pigman.description = S("Baby Piglin")
 baby_pigman.collisionbox = {-0.25, -0.01, -0.25, 0.25, 0.94, 0.25}
 baby_pigman.xp_min = 13
 baby_pigman.xp_max = 13
@@ -129,7 +150,7 @@ baby_pigman.run_velocity = 2.4
 baby_pigman.light_damage = 0
 baby_pigman.child = 1
 
-mobs:register_mob("mobs_mc:baby_zombiepiglin", baby_pigman)
+mobs:register_mob("mobs_mc:baby_piglin", baby_pigman)
 
 -- Regular spawning in the Nether
 mobs:spawn_specific(

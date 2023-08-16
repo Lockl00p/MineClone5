@@ -105,7 +105,7 @@ local pigman = {
 	do_custom = function(self, dtime)
 		for _, plr in pairs(minetest.get_connected_players()) do
 			atk = true
-			if plr:get_pos() and vector.distance(self.object:get_pos(), plr:getpos() < 17) and plr:get_armor_groups() then
+			if plr:get_pos() and vector.distance(self.object:get_pos(), plr:getpos() < 17) then
 				for a=1,4 do
 					for _, arm in pairs(likedarmor) do 
 						if plr:get_inventory():get_stack("armor", a+1):get_name() == arm then

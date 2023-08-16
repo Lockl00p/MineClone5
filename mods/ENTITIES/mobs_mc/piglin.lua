@@ -121,7 +121,7 @@ local pigman = {
 							self.object:set_hp(prvhth)
 						end
 		end
-	end,
+	end
 	
 }
 

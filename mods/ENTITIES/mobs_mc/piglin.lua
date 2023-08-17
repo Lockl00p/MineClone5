@@ -105,7 +105,8 @@ local pigman = {
 	do_custom = function(self, dtime)
 		for _, plr in pairs(minetest.get_connected_players()) do
 			atk = true
-			if plr:get_pos() and vector.distance(self.object:get_pos(), plr:getpos() < 17) then
+			if plr:get_pos() and vector.distance(self.object:get_pos(), plr:get_pos()) < 17 then
+        print("Player found nearby")
 				for a=1,4 do
 					for _, arm in pairs(likedarmor) do 
 						if plr:get_inventory():get_stack("armor", a+1):get_name() == arm then
@@ -114,12 +115,13 @@ local pigman = {
 						end
 					end
 				end
-		end
-						if atk == true then
+        if atk == true then
 							prvhth = self.object:get_hp()
 							self.object:punch(plr)
 							self.object:set_hp(prvhth)
 						end
+		end
+						
 		end
 	end
 	
@@ -187,4 +189,4 @@ mobs_mc.spawn_height.nether_max)
 --mobs:spawn_specific("mobs_mc:pigman", mobs_mc.spawn.nether_portal, {"air"}, 0, minetest.LIGHT_MAX+1, 30, 500, 4, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
 
 -- spawn eggs
-mobs:register_egg("mobs_mc:pigman", S("Zombie Piglin"), "mobs_mc_spawn_icon_zombie_pigman.png", 0)
+mobs:register_egg("mobs_mc:piglin", S("Piglin"), "mobs_mc_spawn_icon_zombie_pigman.png", 0)

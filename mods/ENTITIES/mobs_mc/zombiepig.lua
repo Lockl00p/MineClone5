@@ -133,7 +133,7 @@ mobs:register_mob("mobs_mc:baby_zombiepiglin", baby_pigman)
 
 -- Regular spawning in the Nether
 mobs:spawn_specific(
-"mobs_mc:pigman",
+"mobs_mc:zombie_pigman",
 "nether",
 "ground",
 {
@@ -148,7 +148,7 @@ mobs_mc.spawn_height.nether_min,
 mobs_mc.spawn_height.nether_max)
 -- Baby zombie is 20 times less likely than regular zombies
 mobs:spawn_specific(
-"mobs_mc:baby_pigman",
+"mobs_mc:baby_zombiepiglin",
 "nether",
 "ground",
 {
@@ -166,4 +166,4 @@ mobs_mc.spawn_height.nether_max)
 --mobs:spawn_specific("mobs_mc:pigman", mobs_mc.spawn.nether_portal, {"air"}, 0, minetest.LIGHT_MAX+1, 30, 500, 4, mobs_mc.spawn_height.overworld_min, mobs_mc.spawn_height.overworld_max)
 
 -- spawn eggs
-mobs:register_egg("mobs_mc:pigman", S("Zombie Piglin"), "mobs_mc_spawn_icon_zombie_pigman.png", 0)
+mobs:register_egg("mobs_mc:zombie_piglin", S("Zombie Piglin"), "mobs_mc_spawn_icon_zombie_pigman.png", 0)
